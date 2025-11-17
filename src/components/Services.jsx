@@ -1,4 +1,5 @@
 import { Shield, Cloud, Network, Lock, Server, LineChart } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const services = [
   {
@@ -35,21 +36,27 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="py-20 bg-gradient-to-b from-black to-[#0b0b0b] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">Services</h2>
-          <p className="mt-3 text-slate-600">End‑to‑end delivery from architecture and implementation to managed operations.</p>
+          <h2 className="text-3xl sm:text-4xl font-bold">Services</h2>
+          <p className="mt-3 text-slate-300">End‑to‑end delivery from architecture and implementation to managed operations.</p>
         </div>
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((s) => (
-            <div key={s.title} className="group rounded-2xl p-6 ring-1 ring-slate-200 hover:ring-slate-300 transition-colors">
-              <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 text-white grid place-items-center">
+          {services.map((s, i) => (
+            <motion.div
+              key={s.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: i * 0.05 }}
+              className="group rounded-2xl p-6 ring-1 ring-white/10 bg-white/5 hover:bg-white/[0.08] transition-colors">
+              <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-cyan-500 to-fuchsia-600 text-white grid place-items-center">
                 <s.icon size={22} />
               </div>
-              <h3 className="mt-4 text-xl font-semibold text-slate-900">{s.title}</h3>
-              <p className="mt-2 text-slate-600">{s.desc}</p>
-            </div>
+              <h3 className="mt-4 text-xl font-semibold">{s.title}</h3>
+              <p className="mt-2 text-slate-300">{s.desc}</p>
+            </motion.div>
           ))}
         </div>
       </div>
